@@ -4,7 +4,7 @@ const coursesRouter=require('./shoes')
 const meRouter=require('./me')
 
 function route(app){
-    app.use('/news',newsRouter)
+    // app.use('/news',newsRouter)
     app.use('/shoes',coursesRouter)
     app.use('/me',meRouter)
     app.use('/',siteRouter)
