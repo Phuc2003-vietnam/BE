@@ -6,7 +6,7 @@ async function connect() {
         console.log("connect successfuly");
     }
     catch(error){
-        console.log("connect failure");
+        console.log("connect failure2");
     }
 }
 module.exports = { connect };
