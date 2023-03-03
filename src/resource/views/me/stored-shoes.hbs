@@ -1,0 +1,71 @@
+<div class="mt-4">
+    <h3>Danh sách giày</h3>
+    <table class="table mt-4">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">ImageURL</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each shoes}}
+        <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.image}}</td>
+            <td><a href="/shoes/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+            <td><a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#delete-shoes" data-bs-whatever="{{this._id}}" >Xóa</a>
+</td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>
+</div>
+
+
+{{!-- CONFIRM DELETE SHOES--}}
+<div class="modal" id="delete-shoes" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Shoes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Anh hai có chắc chưa nhỉ ? </p>
+      </div>
+      <div class="modal-footer">
+        <button id='btn-delete-shoes'type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<form name='delete-form' method="POST"></form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+            var shoesId;
+            var form=document.forms['delete-form']
+            var exampleModal = document.getElementById('delete-shoes')
+            exampleModal.addEventListener('show.bs.modal', event => {
+            // Button that triggered the modal
+            var button = event.relatedTarget
+             shoesId = button.getAttribute('data-bs-whatever')
+            console.log(shoesId)
+            })
+
+        var btn=document.getElementById('btn-delete-shoes')
+        btn.onclick=()=>{
+            form.action='/shoes/'+shoesId+ '/?_method=DELETE'
+            form.submit()
+        }   
+    })
+</script>
+

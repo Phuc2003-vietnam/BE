@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname,'public/css')))
 
 //form-data 
 app.use(express.urlencoded({extended:true}))
-app.use(express.json())
+app.use(express.json()) 
 
 //routes inite
 route(app)
